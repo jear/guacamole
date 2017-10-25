@@ -1,0 +1,207 @@
+sudo docker ps
+sudo docker exec -ti 416f9f37218f /bin/bash
+mysql -uroot -phpinvent
+use guacamole_db;
+
+
+
+-- http://guacamole.incubator.apache.org/doc/gug/jdbc-auth.html#jdbc-auth-schema-users
+-- Generate salt
+SET @salt = UNHEX(SHA2(UUID(), 256));
+
+-- Create user and hash password with salt
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student1', @salt, UNHEX(SHA2(CONCAT('VLABcx01', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student2', @salt, UNHEX(SHA2(CONCAT('VLABcx02', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student3', @salt, UNHEX(SHA2(CONCAT('VLABcx03', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student4', @salt, UNHEX(SHA2(CONCAT('VLABcx04', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student5', @salt, UNHEX(SHA2(CONCAT('VLABcx05', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student6', @salt, UNHEX(SHA2(CONCAT('VLABcx06', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student7', @salt, UNHEX(SHA2(CONCAT('VLABcx07', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student8', @salt, UNHEX(SHA2(CONCAT('VLABcx08', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student9', @salt, UNHEX(SHA2(CONCAT('VLABcx09', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student10', @salt, UNHEX(SHA2(CONCAT('VLABcx10', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student11', @salt, UNHEX(SHA2(CONCAT('VLABcx11', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student12', @salt, UNHEX(SHA2(CONCAT('VLABcx12', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student13', @salt, UNHEX(SHA2(CONCAT('VLABcx13', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student14', @salt, UNHEX(SHA2(CONCAT('VLABcx14', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+INSERT INTO guacamole_user (username, password_salt, password_hash, password_date) VALUES ('student15', @salt, UNHEX(SHA2(CONCAT('VLABcx15', HEX(@salt)), 256)), '2017-04-20 07:43:28');
+
+
+--
+-- Create connection
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer69', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer70', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer71', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer72', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer73', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer74', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer75', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer76', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer77', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer78', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer79', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer80', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer81', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer82', 'rdp');
+INSERT INTO guacamole_connection (connection_name, protocol) VALUES ('Student_on_JumpServer83', 'rdp');
+
+-- Determine the connection_id
+SELECT * FROM guacamole_connection WHERE connection_name = 'Student_on_JumpServer69' AND parent_id IS NULL;
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (1, 'hostname', '10.16.2.69');
+INSERT INTO guacamole_connection_parameter VALUES (1, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (1, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (1, 'password', 'Helion_2015');
+INSERT INTO guacamole_connection_parameter VALUES (1, 'color-depth', '16');
+INSERT INTO guacamole_connection_parameter VALUES (1, 'resize-method', 'reconnect');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (2, 'hostname', '10.16.2.70');
+INSERT INTO guacamole_connection_parameter VALUES (2, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (2, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (2, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (3, 'hostname', '10.16.2.71');
+INSERT INTO guacamole_connection_parameter VALUES (3, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (3, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (3, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (4, 'hostname', '10.16.2.72');
+INSERT INTO guacamole_connection_parameter VALUES (4, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (4, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (4, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (5, 'hostname', '10.16.2.73');
+INSERT INTO guacamole_connection_parameter VALUES (5, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (5, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (5, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (6, 'hostname', '10.16.2.74');
+INSERT INTO guacamole_connection_parameter VALUES (6, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (6, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (6, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (7, 'hostname', '10.16.2.75');
+INSERT INTO guacamole_connection_parameter VALUES (7, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (7, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (7, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (8, 'hostname', '10.16.2.76');
+INSERT INTO guacamole_connection_parameter VALUES (8, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (8, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (8, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (9, 'hostname', '10.16.2.78');
+INSERT INTO guacamole_connection_parameter VALUES (9, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (9, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (9, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (10, 'hostname', '10.16.2.79');
+INSERT INTO guacamole_connection_parameter VALUES (10, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (10, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (10, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (11, 'hostname', '10.16.2.80');
+INSERT INTO guacamole_connection_parameter VALUES (11, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (11, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (11, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (12, 'hostname', '10.16.2.81');
+INSERT INTO guacamole_connection_parameter VALUES (12, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (12, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (12, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (13, 'hostname', '10.16.2.82');
+INSERT INTO guacamole_connection_parameter VALUES (13, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (13, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (13, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (14, 'hostname', '10.16.2.83');
+INSERT INTO guacamole_connection_parameter VALUES (14, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (14, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (14, 'password', 'Helion_2015');
+
+-- Add parameters to the new connection
+INSERT INTO guacamole_connection_parameter VALUES (15, 'hostname', '10.16.2.70');
+INSERT INTO guacamole_connection_parameter VALUES (15, 'port', '3389');
+INSERT INTO guacamole_connection_parameter VALUES (15, 'username', 'Administrator');
+INSERT INTO guacamole_connection_parameter VALUES (15, 'password', 'Helion_2015');
+
+
+--  !!!!!!!!!!!!!   
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('3', '1', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('4', '2', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('5', '3', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('6', '4', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('7', '5', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('8', '6', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('9', '7', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('10', '8', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('11', '9', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('12', '10', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('13', '11', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('14', '12', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('15', '13', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('16', '14', 'READ');
+INSERT INTO guacamole_connection_permission (user_id, connection_id, permission ) VALUES ('17', '15', 'READ');
+
+
+
+-----------------------------------------------
+-- update guacamole_connection_parameter set parameter_value = '3389'  where connection_id = 2 AND  parameter_name = 'port' ;
+
+-- updating IP@ of the jumpervers
+update guacamole_connection_parameter set parameter_value = '10.16.2.72'  where connection_id = 1  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.73'  where connection_id = 2  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.74'  where connection_id = 3  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.75'  where connection_id = 4  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.76'  where connection_id = 5  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.77'  where connection_id = 6  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.78'  where connection_id = 7  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.79'  where connection_id = 8  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.80'  where connection_id = 9  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.81'  where connection_id = 10  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.82'  where connection_id = 11  AND  parameter_name = 'hostname';
+update guacamole_connection_parameter set parameter_value = '10.16.2.83'  where connection_id = 12  AND  parameter_name = 'hostname';
+-- update guacamole_connection_parameter set parameter_value = '10.16.2.69'  where connection_id = 13  AND  parameter_name = 'hostname';
+-- update guacamole_connection_parameter set parameter_value = '10.16.2.70'  where connection_id = 14  AND  parameter_name = 'hostname';
+-- update guacamole_connection_parameter set parameter_value = '10.16.2.71'  where connection_id = 15  AND  parameter_name = 'hostname';
+
+
+guacamole_user
++---------+-----------+----------------------------------+----------------------------------+---------------------+----------+---------+---------------------+-------------------+------------+-------------+----------+
+| user_id | username  | password_hash                    | password_salt                    | password_date       | disabled | expired | access_window_start | access_window_end | valid_from | valid_until | timezone |
++---------+-----------+----------------------------------+----------------------------------+---------------------+----------+---------+---------------------+-------------------+------------+-------------+----------+
+
+-- Update user and hash password with salt
+-- Generate salt
+SET @salt = UNHEX(SHA2(UUID(), 256));
+
+SET @password_hash = UNHEX(SHA2(CONCAT('VLABcx00', HEX(@salt)), 256));
+UPDATE guacamole_user SET password_salt=@salt  WHERE username='guacadmin';
+UPDATE guacamole_user SET password_hash=@password_hash WHERE username='guacadmin';
+
+SET @password_hash = UNHEX(SHA2(CONCAT('VLABcx01', HEX(@salt)), 256));
+UPDATE guacamole_user SET password_salt=@salt  WHERE username='student1';
+UPDATE guacamole_user SET password_hash=@password_hash WHERE username='student1';
+
+SET @password_hash = UNHEX(SHA2(CONCAT('VLABcx02', HEX(@salt)), 256));
+UPDATE guacamole_user SET password_salt=@salt  WHERE username='student2';
+UPDATE guacamole_user SET password_hash=@password_hash WHERE username='student2';
+
+SET @password_hash = UNHEX(SHA2(CONCAT('VLABcx02', HEX(@salt)), 256));
+UPDATE guacamole_user SET password_salt=@salt  WHERE username='student2';
+UPDATE guacamole_user SET password_hash=@password_hash WHERE username='student2';
